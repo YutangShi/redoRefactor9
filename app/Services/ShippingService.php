@@ -15,33 +15,65 @@ class ShippingService
 
         switch ($companyName){
             case 'BlackCat':
-                $weights = collect($weightArray);
-                
-                foreach ($weights as $weight) {
-                    $amount = $amount + (100 + $weight * 10);
-                }
+                $amount = $this->blackCatCalculateFee($weightArray, $amount);
                 break;
             case 'Hsinchu':
-                $weights = collect($weightArray);
-                
-                foreach ($weights as $weight) {
-                    $amount = $amount + (80 + $weight * 15);
-                }
+                $amount = $this->hsinchuCalculateFee($weightArray, $amount);
                 break;
             case 'PostOffice':
-                $weights = collect($weightArray);
-                
-                foreach ($weights as $weight) {
-                    $amount = $amount + (60 + $weight * 20);
-                }
+                $amount = $this->postCalculateFee($weightArray, $amount);
                 break;
             default :
-                $weights = collect($weightArray);
-                
-                foreach ($weights as $weight) {
-                    $amount = $amount + (100 + $weight * 10);
-                }
+                $amount = $this->blackCatCalculateFee($weightArray, $amount);
                 break;
+        }
+
+        return $amount;
+    }
+
+    /**
+     * @param array $weightArray
+     * @param int $amount
+     * @return int
+     */
+    public function blackCatCalculateFee(array $weightArray, $amount)
+    {
+        $weights = collect($weightArray);
+
+        foreach ($weights as $weight) {
+            $amount = $amount + (100 + $weight * 10);
+        }
+
+        return $amount;
+    }
+
+    /**
+     * @param array $weightArray
+     * @param int $amount
+     * @return int
+     */
+    public function hsinchuCalculateFee(array $weightArray, $amount)
+    {
+        $weights = collect($weightArray);
+
+        foreach ($weights as $weight) {
+            $amount = $amount + (80 + $weight * 15);
+        }
+
+        return $amount;
+    }
+
+    /**
+     * @param array $weightArray
+     * @param int $amount
+     * @return int
+     */
+    public function postCalculateFee(array $weightArray, $amount)
+    {
+        $weights = collect($weightArray);
+
+        foreach ($weights as $weight) {
+            $amount = $amount + (60 + $weight * 20);
         }
 
         return $amount;
