@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Collection;
 
-abstract class AbstractLogistics
+abstract class AbstractLogistics implements LogisticsInterface
 {
     /**
      * @param array $weightArray
