@@ -9,7 +9,7 @@ class ShippingService
      * @param string $companyName
      * @return int
      */
-    public function calculateFee(array $weightArray, string $companyName): int
+    public function calculateFee(array $weightArray, $companyName)
     {
         $amount = 0;
 
