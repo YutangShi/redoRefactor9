@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Hsinchu
+class Hsinchu extends AbstractLogistics
 {
     /**
      * @param array $weightArray
@@ -11,7 +11,7 @@ class Hsinchu
      */
     public function calculateFee(array $weightArray, $amount)
     {
-        $weights = collect($weightArray);
+        $weights = $this->arrayToCollection($weightArray);
 
         foreach ($weights as $weight) {
             $amount = $amount + (80 + $weight * 15);

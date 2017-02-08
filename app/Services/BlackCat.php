@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class BlackCat
+class BlackCat extends AbstractLogistics
 {
     /**
      * @param array $weightArray
@@ -11,7 +11,7 @@ class BlackCat
      */
     public function calculateFee(array $weightArray, $amount)
     {
-        $weights = collect($weightArray);
+        $weights = $this->arrayToCollection($weightArray);
 
         foreach ($weights as $weight) {
             $amount = $amount + (100 + $weight * 10);

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Post
+class Post extends AbstractLogistics
 {
     /**
      * @param array $weightArray
@@ -11,7 +11,7 @@ class Post
      */
     public function calculateFee(array $weightArray, $amount)
     {
-        $weights = collect($weightArray);
+        $weights = $this->arrayToCollection($weightArray);
 
         foreach ($weights as $weight) {
             $amount = $amount + (60 + $weight * 20);
