@@ -13,30 +13,35 @@ class ShippingService
     {
         $amount = 0;
 
-        if ($companyName == 'BlackCat') {
-            $weights = collect($weightArray);
-
-            foreach ($weights as $weight) {
-                $amount = $amount + (100 + $weight * 10);
-            }
-        } elseif ($companyName == 'Hsinchu') {
-            $weights = collect($weightArray);
-
-            foreach ($weights as $weight) {
-                $amount = $amount + (80 + $weight * 15);
-            }
-        } else if ($companyName == 'PostOffice') {
-            $weights = collect($weightArray);
-
-            foreach ($weights as $weight) {
-                $amount = $amount + (60 + $weight * 20);
-            }
-        } else {
-            $weights = collect($weightArray);
-
-            foreach ($weights as $weight) {
-                $amount = $amount + (100 + $weight * 10);
-            }
+        switch ($companyName){
+            case 'BlackCat':
+                $weights = collect($weightArray);
+                
+                foreach ($weights as $weight) {
+                    $amount = $amount + (100 + $weight * 10);
+                }
+                break;
+            case 'Hsinchu':
+                $weights = collect($weightArray);
+                
+                foreach ($weights as $weight) {
+                    $amount = $amount + (80 + $weight * 15);
+                }
+                break;
+            case 'PostOffice':
+                $weights = collect($weightArray);
+                
+                foreach ($weights as $weight) {
+                    $amount = $amount + (60 + $weight * 20);
+                }
+                break;
+            default :
+                $weights = collect($weightArray);
+                
+                foreach ($weights as $weight) {
+                    $amount = $amount + (100 + $weight * 10);
+                }
+                break;
         }
 
         return $amount;
