@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 
 abstract class AbstractLogistics implements LogisticsInterface
 {
+    use LogTrait;
+    
     /**
      * @param array $weightArray
      * @return Collection
@@ -28,6 +30,8 @@ abstract class AbstractLogistics implements LogisticsInterface
         foreach ($weights as $weight) {
             $amount = $amount + $closure($weight);
         }
+
+        $this->writeLog($amount);
 
         return $amount;
     }
