@@ -16,4 +16,19 @@ abstract class AbstractLogistics
 
         return $weights;
     }
+
+    /**
+     * @param int $amount
+     * @param Collection $weights
+     * @param callable $closure
+     * @return int
+     */
+    protected function loopWeights($amount, Collection $weights, callable $closure)
+    {
+        foreach ($weights as $weight) {
+            $amount = $amount + $closure($weight);
+        }
+
+        return $amount;
+    }
 }

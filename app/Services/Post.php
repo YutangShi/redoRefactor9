@@ -13,9 +13,9 @@ class Post extends AbstractLogistics
     {
         $weights = $this->arrayToCollection($weightArray);
 
-        foreach ($weights as $weight) {
-            $amount = $amount + (60 + $weight * 20);
-        }
+        $amount = $this->loopWeights($amount, $weights, function ($weight) {
+            return (60 + $weight *20);
+        });
 
         return $amount;
     }

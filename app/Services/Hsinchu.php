@@ -13,9 +13,9 @@ class Hsinchu extends AbstractLogistics
     {
         $weights = $this->arrayToCollection($weightArray);
 
-        foreach ($weights as $weight) {
-            $amount = $amount + (80 + $weight * 15);
-        }
+        $amount = $this->loopWeights($amount, $weights, function ($weight) {
+            return (80 + $weight * 15);
+        });
 
         return $amount;
     }
